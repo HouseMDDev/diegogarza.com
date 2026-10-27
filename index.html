@@ -24,6 +24,8 @@
             align-items: center;
             font-family: Arial, sans-serif;
             letter-spacing: 2px;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         /* Estilos y efectos visuales de la imagen */
@@ -34,6 +36,10 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             filter: grayscale(100%) contrast(120%); 
             transition: filter 0.5s ease, transform 0.5s ease;
+            
+            /* Bloquear interacciones y descargas */
+            pointer-events: none;
+            -webkit-touch-callout: none;
         }
 
         /* Estilos para el texto inferior */
@@ -55,5 +61,20 @@
     <div class="caption">
         Diego Garza
     </div>
+
+    <!-- Script para bloquear clics derechos y atajos de guardado -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (
+                event.key === 'F12' || 
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'C' || event.key === 'J')) || 
+                (event.ctrlKey && event.key === 's') ||
+                (event.ctrlKey && event.key === 'u')
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
